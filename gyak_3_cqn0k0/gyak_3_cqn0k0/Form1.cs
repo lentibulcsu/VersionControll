@@ -31,8 +31,8 @@ namespace gyak_3_cqn0k0
         {
             var u = new User()
             {
-                LastName = textBox1.Text,
-                FirstName = textBox2.Text
+                FullName = textBox1.Text,
+
             };
             users.Add(u);
         }
