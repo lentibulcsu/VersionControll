@@ -23,8 +23,8 @@ namespace gyak_3_cqn0k0
             button1.Text = Resource1.Add;
 
             listBox1.DataSource = users;
-            listBox1.ValueMember = "ID";
             listBox1.DisplayMember = "FullName";
+            //listBox1.ValueMember = "ID";
         }
 
         private void button1_Click(object sender, EventArgs e)

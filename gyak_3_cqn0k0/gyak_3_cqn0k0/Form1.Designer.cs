@@ -57,14 +57,14 @@ namespace gyak_3_cqn0k0
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(339, 39);
+            this.textBox1.Location = new System.Drawing.Point(367, 39);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(211, 20);
             this.textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(339, 91);
+            this.textBox2.Location = new System.Drawing.Point(367, 91);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(211, 20);
             this.textBox2.TabIndex = 3;
@@ -73,7 +73,7 @@ namespace gyak_3_cqn0k0
             // 
             this.button1.Location = new System.Drawing.Point(284, 132);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(266, 39);
+            this.button1.Size = new System.Drawing.Size(294, 39);
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
