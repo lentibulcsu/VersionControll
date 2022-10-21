@@ -35,6 +35,8 @@ namespace CQN0K0_06_het
             HarmadikFuggveny();
 
             dataGridView1.DataSource = Rates;
+
+            chartRateData.DataSource = Rates;
         }
 
         public string ElsoFuggveny()
@@ -47,7 +49,7 @@ namespace CQN0K0_06_het
                 startDate = (dateTimePicker1.Value).ToString(),
                 endDate = (dateTimePicker2.Value).ToString()
             };
-
+            
 
             var response = mnbService.GetExchangeRates(request);
 
@@ -81,7 +83,7 @@ namespace CQN0K0_06_het
 
         public void HarmadikFuggveny()
         {
-            chartRateData.DataSource = Rates;
+
 
             var series = chartRateData.Series[0];
             series.ChartType = SeriesChartType.Line;
