@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace CQN0K0_06_het
@@ -19,9 +20,19 @@ namespace CQN0K0_06_het
 
         public Form1()
         {
+            RefreshData();
+
+        }
+
+        private void RefreshData()
+        {
+            Rates.Clear();
+
             InitializeComponent();
 
             MasodikFuggveny(ElsoFuggveny());
+
+            HarmadikFuggveny();
 
             dataGridView1.DataSource = Rates;
         }
@@ -32,9 +43,9 @@ namespace CQN0K0_06_het
 
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
+                currencyNames = (comboBox1.SelectedItem).ToString(),
+                startDate = (dateTimePicker1.Value).ToString(),
+                endDate = (dateTimePicker2.Value).ToString()
             };
 
 
@@ -68,6 +79,38 @@ namespace CQN0K0_06_het
             }
         }
 
-        public void HarmadikFuggveny
+        public void HarmadikFuggveny()
+        {
+            chartRateData.DataSource = Rates;
+
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
+
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
     }
 }
