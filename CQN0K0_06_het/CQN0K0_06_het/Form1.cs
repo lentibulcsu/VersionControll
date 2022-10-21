@@ -1,4 +1,5 @@
-﻿using CQN0K0_06_het.MnbServiceReference;
+﻿using CQN0K0_06_het.Entities;
+using CQN0K0_06_het.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace CQN0K0_06_het
 {
@@ -19,12 +21,12 @@ namespace CQN0K0_06_het
         {
             InitializeComponent();
 
-            ElsoFuggveny();
+            MasodikFuggveny(ElsoFuggveny());
 
             dataGridView1.DataSource = Rates;
         }
 
-        private void ElsoFuggveny()
+        public string ElsoFuggveny()
         {
             var mnbService = new MNBArfolyamServiceSoapClient();
 
@@ -39,11 +41,33 @@ namespace CQN0K0_06_het
             var response = mnbService.GetExchangeRates(request);
 
             var result = response.GetExchangeRatesResult;
+
+            return result;
         }
 
-        private void MasodikFuggveny()
+        public void MasodikFuggveny(string result)
         {
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
 
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+
+                var rate = new RateData();
+                Rates.Add(rate);
+
+                rate.Date = DateTime.Parse(element.GetAttribute("date"));
+
+                var childElement = (XmlElement)element.ChildNodes[0];
+                rate.Currency = childElement.GetAttribute("curr");
+
+                var unit = decimal.Parse(childElement.GetAttribute("unit"));
+                var value = decimal.Parse(childElement.InnerText);
+                if (unit != 0)
+                    rate.Value = value / unit;
+            }
         }
+
+        public void HarmadikFuggveny
     }
 }
