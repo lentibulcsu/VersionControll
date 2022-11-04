@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities1\Ball.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Entities\User.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
