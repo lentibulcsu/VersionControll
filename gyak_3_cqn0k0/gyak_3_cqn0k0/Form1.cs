@@ -47,11 +47,11 @@ namespace gyak_3_cqn0k0
         {
             var maxPosition = 0;
 
-            foreach (var ball in _balls)
+            foreach (var toy in _balls)
             {
-                ball.MoveBall();
-                if (ball.Left > maxPosition)
-                    maxPosition = ball.Left;
+                toy.MoveToy();
+                if (toy.Left > maxPosition)
+                    maxPosition = toy.Left;
             }
 
             if (maxPosition>=1000)
