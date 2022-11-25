@@ -38,9 +38,16 @@ namespace UnitTestExample.Test
             TestCase("bulC5U17s", true)
         ]
 
-        public void TestValidatePassword()
+        public void TestValidatePassword(string password, bool expectedResult)
         {
+            // Arrange
+            var accountController = new AccountController();
 
+            // Act
+            var actualResult = accountController.ValidateEmail(password);
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
         }
     }
 }
